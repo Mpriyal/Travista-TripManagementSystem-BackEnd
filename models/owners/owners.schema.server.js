@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var hotelOwnerSchema = mongoose.Schema({
+var ownersSchema = mongoose.Schema({
     username: {type: String, unique: true},
     password: String,
     firstName: String,
@@ -17,4 +17,4 @@ var hotelOwnerSchema = mongoose.Schema({
     businessName: String
 }, {collection: 'owners'});
 
-module.exports = hotelOwnerSchema;
+module.exports = ownersSchema;

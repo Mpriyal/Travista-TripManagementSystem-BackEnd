@@ -14,35 +14,37 @@ function createOwner(owner) {
     return ownersModel.create(owner);
 }
 
-function updateOwner(newowner) {
-    ownersModel.findById(newowner.ownerId, function (err, owner) {
-        owner.username = newowner.username;
-        owner.lastName = newowner.lastName;
-        owner.firstName = newowner.firstName;
-        owner.email = newowner.email;
-        owner.address = newowner.address;
-        owner.phoneNumber = newowner.phoneNumber;
+function updateOwner(newOwner) {
+    ownersModel.findById(newOwner._id, function (err, owner) {
+        owner.username = newOwner.username;
+        owner.lastName = newOwner.lastName;
+        owner.firstName = newOwner.firstName;
+        owner.email = newOwner.email;
+        owner.address = newOwner.address;
+        owner.phoneNumber = newOwner.phoneNumber;
+        owner.typeOfBusiness = newOwner.typeOfBusiness;
+        owner.businessName = newOwner.businessName;
         owner.save(function (err) {
             if (err) throw err;
         });
     });
 }
 
-function findCustomerByCustomername(username) {
+function findOwnerByOwnername(username) {
     return ownersModel.count({username: username});
 }
 
-function findAllCustomers() {
+function findAllOwners() {
     return ownersModel.find();
 }
 
 var api = {
     createOwner: createOwner,
     updateOwner: updateOwner,
-    findAllCustomers: findAllCustomers,
+    findAllOwners: findAllOwners,
     findOwnerById: findOwnerById,
     findOwnerByCredentials: findOwnerByCredentials,
-    findCustomerByCustomername: findCustomerByCustomername,
+    findOwnerByOwnername: findOwnerByOwnername,
 };
 
 module.exports = api;
