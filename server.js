@@ -2,7 +2,7 @@ var express = require('express')
 var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const idleTimeoutSeconds = 30*60*1000;
-mongoose.connect('');
+mongoose.connect('mongodb://heroku_25rt1ndf:oq7m9k01j53va5sg677eo9qpib@ds117061.mlab.com:17061/heroku_25rt1ndf');
 
 var app = express()
 
