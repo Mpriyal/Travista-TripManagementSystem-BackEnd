@@ -4,6 +4,7 @@ var carSchema = mongoose.Schema({
     provider: {
         company_name: String,
     },
+    description: String,
     location: {
         latitude: Number,
         longitude: Number
