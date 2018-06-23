@@ -14,7 +14,8 @@ var ownersSchema = mongoose.Schema({
         enum: ['HOTEL', 'RESTAURANT', 'CAR'],
         default: 'HOTEL'
     },
-    businessName: String
+    businessName: String,
+    business: [String]
 }, {collection: 'owners'});
 
 module.exports = ownersSchema;

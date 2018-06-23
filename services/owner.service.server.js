@@ -14,7 +14,7 @@ module.exports = function (app) {
         ownerModel
             .findOwnerByCredentials(credentials)
             .then(function(owner) {
-                req.session['currentowner'] = owner;
+                req.session['currentUser'] = owner;
                 res.json(owner);
             })
     }
@@ -33,7 +33,7 @@ module.exports = function (app) {
     }
 
     function profile(req, res) {
-        var owner = req.session['currentowner'];
+        var owner = req.session['currentUser'];
         if (owner == null){
             res.sendStatus(403);
         }
@@ -52,7 +52,7 @@ module.exports = function (app) {
                 if(count === 0){
                     ownerModel.createOwner(owner)
                         .then(function (owner) {
-                            req.session['currentowner'] = owner;
+                            req.session['currentUser'] = owner;
                             res.send(owner);
                         })
                 }

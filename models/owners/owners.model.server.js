@@ -24,6 +24,7 @@ function updateOwner(newOwner) {
         owner.phoneNumber = newOwner.phoneNumber;
         owner.typeOfBusiness = newOwner.typeOfBusiness;
         owner.businessName = newOwner.businessName;
+        owner.business = newOwner.business;
         owner.save(function (err) {
             if (err) throw err;
         });
