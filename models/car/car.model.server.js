@@ -12,22 +12,16 @@ function createCar(car) {
 
 function updateCar(newCar) {
     carModel.findById(newCar._id, function (err, car) {
-        car.provider.company_name = newCar.provider.company_name;
         car.description = newCar.description;
-        car.location.latitude = newCar.location.latitude;
-        car.location.longitude = newCar.location.longitude;
-        car.address.line1 = newCar.address.line1;
-        car.address.city = newCar.address.city;
-        car.address.region = newCar.address.region;
-        car.address.country = newCar.address.country;
-       car.cars.vehicle_info.transmission = newCar.cars.vehicle_info.transmission;
-        car.cars.vehicle_info.fuel = newCar.cars.vehicle_info.fuel;
-        car.cars.vehicle_info.air_conditioning = newCar.cars.vehicle_info.air_conditioning;
-        car.cars.vehicle_info.category = newCar.cars.vehicle_info.category;
-        car.cars.vehicle_info.type = newCar.cars.vehicle_info.type;
-        car.rates.price.type = newCar.rates.price.type;
-        car.rates.price.amount = newCar.rates.price.amount;
-        car.rates.price.currency = newCar.rates.price.currency;
+        car.address = newCar.address;
+       car.vehicle_info.transmission = newCar.vehicle_info.transmission;
+        car.vehicle_info.fuel = newCar.vehicle_info.fuel;
+        car.vehicle_info.air_conditioning = newCar.vehicle_info.air_conditioning;
+        car.vehicle_info.category = newCar.vehicle_info.category;
+        car.vehicle_info.type = newCar.vehicle_info.type;
+        car.price.type = newCar.price.type;
+        car.price.amount = newCar.price.amount;
+        car.price.currency = newCar.price.currency;
         car.save(function (err) {
             if (err) throw err;
         });
