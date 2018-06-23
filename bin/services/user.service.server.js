@@ -14,7 +14,7 @@ module.exports = function (app) {
     customerModel
       .findCustomerByCredentials(credentials)
       .then(function(customer) {
-        req.session['currentCustomer'] = customer;
+        req.session['currentcustomer'] = customer;
         res.json(customer);
       })
   }
@@ -33,7 +33,7 @@ module.exports = function (app) {
   }
 
   function profile(req, res) {
-    var customer = req.session['currentCustomer'];
+    var customer = req.session['currentcustomer'];
     if (customer == null){
         res.sendStatus(403);
     }
@@ -47,12 +47,12 @@ module.exports = function (app) {
 
   function createCustomer(req, res) {
     var customer = req.body;
-    customerModel.findCustomerByUsername(customer.username)
+    customerModel.findCustomerByCustomername(customer.username)
         .then(function (count) {
             if(count === 0){
                 customerModel.createCustomer(customer)
                     .then(function (customer) {
-                        req.session['currentCustomer'] = customer;
+                        req.session['currentcustomer'] = customer;
                         res.send(customer);
                     })
             }
