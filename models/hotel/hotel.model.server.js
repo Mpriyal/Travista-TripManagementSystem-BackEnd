@@ -6,9 +6,19 @@ function createHotel(hotel) {
     return hotelModel.create(hotel);
 }
 
-function updateHotel(hotel) {
-    let u = hotelModel.updateOne({_id: hotel._id}, hotel);
-    return u;
+function updateHotel(newHotel) {
+    hotelModel.findById(newHotel._id, function (err, hotel) {
+        hotel.name = newHotel.name;
+        hotel.location.latitude = newHotel.location.latitude;
+        hotel.location.longitude = newHotel.location.longitude;
+        hotel.address = newHotel.address;
+        hotel.phone = newHotel.phone;
+        hotel.customers = newHotel.customers;
+        hotel.rate = newHotel.rate;
+        hotel.save(function (err) {
+            if (err) throw err;
+        });
+    });
 }
 
 function deleteHotel(hotelId) {
