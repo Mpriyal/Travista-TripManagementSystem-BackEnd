@@ -6,6 +6,14 @@ function findRoomById(roomId) {
     return roomModel.findById(roomId);
 }
 
+function findAllRooms() {
+    return roomModel.find();
+}
+
+function findRoomsForHotel(hotelId) {
+    return roomModel.find({hotelId: hotelId});
+}
+
 function createRoom(room) {
     return roomModel.create(room);
 }
@@ -24,19 +32,17 @@ function updateRoom(newRoom) {
     });
 }
 
-// function findRoomByPropertyName(propertyName) {
-//     return roomModel.count({property_name: propertyName});
-// }
-
-function findAllRooms() {
-    return roomModel.find();
+function deleteRoom(roomId) {
+    return roomModel.remove({_id: roomId})
 }
 
 var api = {
     createRoom: createRoom,
     updateRoom: updateRoom,
+    deleteRoom: deleteRoom,
     findAllRooms: findAllRooms,
-    findRoomById: findRoomById
+    findRoomById: findRoomById,
+    findRoomsForHotel: findRoomsForHotel
 };
 
 module.exports = api;
