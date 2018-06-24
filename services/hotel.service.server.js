@@ -9,8 +9,9 @@ module.exports = function (app) {
     var hotelModel = require('../models/hotel/hotel.model.server');
 
     function createHotel(req, res) {
+        var ownerId = req.params['ownerId'];
         var hotel = req.body;
-        hotelModel.createHotel(hotel)
+        hotelModel.createHotel(hotel,ownerId)
             .then(function (hotel) {
                 res.json(hotel);
             })

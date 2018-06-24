@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 var ownersSchema = mongoose.Schema({
+    businessId: String,
     username: {type: String, unique: true},
     password: String,
     firstName: String,
@@ -14,8 +15,7 @@ var ownersSchema = mongoose.Schema({
         enum: ['HOTEL', 'RESTAURANT', 'CAR'],
         default: 'HOTEL'
     },
-    businessName: String,
-    business: [String]
+    businessName: String
 }, {collection: 'owners'});
 
 module.exports = ownersSchema;

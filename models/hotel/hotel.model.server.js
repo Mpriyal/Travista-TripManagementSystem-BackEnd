@@ -8,6 +8,7 @@ function createHotel(hotel) {
 
 function updateHotel(newHotel) {
     hotelModel.findById(newHotel._id, function (err, hotel) {
+        hotel.ownerId = newHotel.ownerId;
         hotel.name = newHotel.name;
         hotel.location.latitude = newHotel.location.latitude;
         hotel.location.longitude = newHotel.location.longitude;
