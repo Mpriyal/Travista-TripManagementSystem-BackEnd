@@ -1,13 +1,10 @@
 var mongoose = require('mongoose');
 
 var roomSchema = mongoose.Schema({
-
-    pricePerDay: Number,
-    currency_code: String,
+    hotelId: String,
     room_type: String,
-    bed_type: String,
-    number_of_beds: Number,
-    descriptions: [String]
+    isBooked: Boolean,
+    number_of_beds: Number
 }, {collection: 'room'});
 
 module.exports = roomSchema;

@@ -8,7 +8,7 @@ module.exports = function (app) {
     app.put('/api/owner', updateOwner);
     app.delete('/api/owner/:ownerId', deleteOwner);
 
-    var ownerModel = require('../models/owner/owner.model.server');
+    var ownerModel = require('../models/owners/owners.model.server');
 
     function createOwner(req, res) {
         var owner = req.body;

@@ -28,10 +28,6 @@ function updateCar(newCar) {
     });
 }
 
-// function findCarByName(name) {
-//     return carModel.count({property_name: name});
-// }
-
 function findAllCars() {
     return carModel.find();
 }

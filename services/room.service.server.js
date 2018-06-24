@@ -47,7 +47,7 @@ module.exports = function (app) {
     }
 
     function deleteRoom(req, res) {
-        var roomId = req.params['roomId'];
+        var roomId = req.params['hotelId'];
         roomModel.deleteRoom(roomId)
             .then(function (rooms) {
                 res.json(rooms);

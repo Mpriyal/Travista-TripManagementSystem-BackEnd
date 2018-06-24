@@ -2,7 +2,8 @@ var express = require('express')
 var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const idleTimeoutSeconds = 30*60*1000;
-mongoose.connect('mongodb://heroku_25rt1ndf:oq7m9k01j53va5sg677eo9qpib@ds117061.mlab.com:17061/heroku_25rt1ndf');
+// mongoose.connect('mongodb://heroku_25rt1ndf:oq7m9k01j53va5sg677eo9qpib@ds117061.mlab.com:17061/heroku_25rt1ndf');
+mongoose.connect('mongodb://localhost/travel-manager');
 
 var app = express()
 
@@ -59,8 +60,14 @@ function getSession(req, res) {
   res.send(value);
 }
 
-
 require('./services/customer.service.server')(app);
+// require('./services/car.service.server')(app);
+// require('./services/hotel.service.server')(app);
+// require('./services/restaurant.service.server')(app);
+// require('./services/room.service.server')(app);
+require('./services/owner.service.server')(app);
 
+var hotelService = require('./services/hotel.service.server');
+hotelService(app);
 
 app.listen(process.env.PORT || 4000);
