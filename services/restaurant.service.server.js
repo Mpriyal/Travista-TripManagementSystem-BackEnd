@@ -5,7 +5,7 @@ module.exports = function (app) {
     // app.get('/api/profile', profile);
     // app.post('/api/logout', logout);
     // app.post('/api/login', login);
-    app.put('/api/restaurant', updateRestaurant);
+    app.put('/api/restaurant/:restaurantId', updateRestaurant);
 
     var restaurantModel = require('../models/restaurant/restaurant.model.server');
 

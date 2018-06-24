@@ -2,7 +2,7 @@ module.exports = function (app) {
     app.get('/api/car', findAllCars);
     app.get('/api/car/:carId', findCarById);
     app.post('/api/car', createCar);
-    app.put('/api/car', updateCar);
+    app.put('/api/car/:carId', updateCar);
 
     var carModel = require('../models/car/car.model.server');
 

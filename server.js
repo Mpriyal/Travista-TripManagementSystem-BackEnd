@@ -61,10 +61,10 @@ function getSession(req, res) {
 }
 
 require('./services/customer.service.server')(app);
-// require('./services/car.service.server')(app);
-// require('./services/hotel.service.server')(app);
-// require('./services/restaurant.service.server')(app);
-// require('./services/room.service.server')(app);
+require('./services/car.service.server')(app);
+require('./services/hotel.service.server')(app);
+require('./services/restaurant.service.server')(app);
+require('./services/room.service.server')(app);
 require('./services/owner.service.server')(app);
 
 var hotelService = require('./services/hotel.service.server');

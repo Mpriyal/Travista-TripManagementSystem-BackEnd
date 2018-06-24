@@ -5,7 +5,7 @@ module.exports = function (app) {
   app.get('/api/profile', profile);
   app.post('/api/logout', logout);
   app.post('/api/login', login);
-  app.put('/api/customer', updateCustomer);
+  app.put('/api/customer/:customerId', updateCustomer);
   app.delete('/api/customer/:customerId', deleteCustomer);
 
   var customerModel = require('../models/customer/customer.model.server');

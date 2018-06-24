@@ -3,7 +3,7 @@ module.exports = function (app) {
     app.get('/api/hotel', findAllHotels);
     app.get('/api/hotel/:hotelId', findHotelById);
     app.post('/api/hotel', createHotel);
-    app.put('/api/hotel', updateHotel);
+    app.put('/api/hotel/:hotelId', updateHotel);
     app.delete('/api/hotel/:hotelId', deleteHotel);
 
     var hotelModel = require('../models/hotel/hotel.model.server');

@@ -2,7 +2,7 @@ module.exports = function (app) {
     app.get('/api/room', findAllRooms);
     app.get('/api/room/:roomId', findRoomById);
     app.post('/api/room', createRoom);
-    app.put('/api/room', updateRoom);
+    app.put('/api/room/:roomId', updateRoom);
     app.get('/api/hotel/:hotelId/room', findRoomsForHotel);
     app.delete('/api/room/:roomId', deleteRoom);
 

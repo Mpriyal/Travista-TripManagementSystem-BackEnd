@@ -5,7 +5,7 @@ module.exports = function (app) {
     app.get('/api/profile', profile);
     app.post('/api/logout', logout);
     app.post('/api/login', login);
-    app.put('/api/owner', updateOwner);
+    app.put('/api/owner/:ownerId', updateOwner);
     app.delete('/api/owner/:ownerId', deleteOwner);
 
     var ownerModel = require('../models/owners/owners.model.server');
