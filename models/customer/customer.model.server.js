@@ -2,14 +2,6 @@ var mongoose = require('mongoose');
 var customerSchema = require('./customer.schema.server');
 var customerModel = mongoose.model('CustomerModel', customerSchema);
 
-function findCustomerByCredentials(credentials) {
-    return customerModel.findOne(credentials, {username: 1, password: 1});
-}
-
-function findCustomerById(customerId) {
-    return customerModel.findById(customerId);
-}
-
 function createCustomer(customer) {
     return customerModel.create(customer);
 }
@@ -29,6 +21,18 @@ function updateCustomer(newCustomer) {
     });
 }
 
+function deleteCustomer(customerId) {
+    return customerModel.remove({_id: customerId})
+}
+
+function findCustomerByCredentials(credentials) {
+    return customerModel.findOne(credentials, {username: 1, password: 1});
+}
+
+function findCustomerById(customerId) {
+    return customerModel.findById(customerId);
+}
+
 function findCustomerByUsername(username) {
     return customerModel.count({username: username});
 }
@@ -44,6 +48,7 @@ var api = {
     findCustomerById: findCustomerById,
     findCustomerByCredentials: findCustomerByCredentials,
     findCustomerByUsername: findCustomerByUsername,
+    deleteCustomer: deleteCustomer
 };
 
 module.exports = api;

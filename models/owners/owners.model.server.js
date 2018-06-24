@@ -2,14 +2,6 @@ var mongoose = require('mongoose');
 var ownersSchema = require('./owners.schema.server');
 var ownersModel = mongoose.model('OwnerModel', ownersSchema);
 
-function findOwnerByCredentials(credentials) {
-    return ownersModel.findOne(credentials, {username: 1});
-}
-
-function findOwnerById(ownerId) {
-    return ownerModel.findById(ownerId);
-}
-
 function createOwner(owner) {
     return ownersModel.create(owner);
 }
@@ -31,7 +23,19 @@ function updateOwner(newOwner) {
     });
 }
 
-function findOwnerByOwnername(username) {
+function deleteOwner(ownerId) {
+    return ownersModel.remove({_id: ownerId})
+}
+
+function findOwnerByCredentials(credentials) {
+    return ownersModel.findOne(credentials, {username: 1});
+}
+
+function findOwnerById(ownerId) {
+    return ownerModel.findById(ownerId);
+}
+
+function findOwnerByUsername(username) {
     return ownersModel.count({username: username});
 }
 
@@ -45,7 +49,8 @@ var api = {
     findAllOwners: findAllOwners,
     findOwnerById: findOwnerById,
     findOwnerByCredentials: findOwnerByCredentials,
-    findOwnerByOwnername: findOwnerByOwnername,
+    findOwnerByUsername: findOwnerByUsername,
+    deleteOwner: deleteOwner
 };
 
 module.exports = api;
