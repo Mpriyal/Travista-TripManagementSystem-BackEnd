@@ -3,7 +3,6 @@ module.exports = function (app) {
   app.get('/api/customer/:customerId', findCustomerById);
   app.post('/api/customer', createCustomer);
   app.get('/api/profile', profile);
-  app.post('/api/logout', logout);
   app.post('/api/login', login);
   app.put('/api/customer/:customerId', updateCustomer);
   app.delete('/api/customer/:customerId', deleteCustomer);
@@ -64,11 +63,6 @@ module.exports = function (app) {
         req.session['currentUser'] = customer;
         res.json(customer);
       })
-  }
-
-  function logout(req, res) {
-    req.session.destroy();
-    res.send(200);
   }
 
   function profile(req, res) {

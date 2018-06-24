@@ -2,9 +2,9 @@ module.exports = function (app) {
     app.get('/api/owner', findAllOwners);
     app.get('/api/owner/:ownerId', findOwnerById);
     app.post('/api/owner', createOwner);
-    app.get('/api/profile', profile);
+    app.get('/api/businessProfile', businessProfile);
     app.post('/api/logout', logout);
-    app.post('/api/login', login);
+    app.post('/api/businessLogin', businessLogin);
     app.put('/api/owner/:ownerId', updateOwner);
     app.delete('/api/owner/:ownerId', deleteOwner);
 
@@ -56,8 +56,9 @@ module.exports = function (app) {
             })
     }
 
-    function login(req, res) {
+    function businessLogin(req, res) {
         var credentials = req.body;
+        console.log(credentials);
         ownerModel
             .findOwnerByCredentials(credentials)
             .then(function (owner) {
@@ -71,7 +72,7 @@ module.exports = function (app) {
         res.send(200);
     }
 
-    function profile(req, res) {
+    function businessProfile(req, res) {
         var owner = req.session['currentUser'];
         if (owner == null) {
             res.sendStatus(403);

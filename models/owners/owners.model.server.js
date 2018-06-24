@@ -28,7 +28,8 @@ function deleteOwner(ownerId) {
 }
 
 function findOwnerByCredentials(credentials) {
-    return ownersModel.findOne(credentials, {username: 1});
+    return ownersModel.findOne(credentials, {username: 1, password: 1});
+
 }
 
 function findOwnerById(ownerId) {
