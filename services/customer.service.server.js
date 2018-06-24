@@ -71,7 +71,8 @@ module.exports = function (app) {
         res.sendStatus(403);
     }
     else {
-        customerModel.findCustomerById(customer._id)
+        var dbCustomer = customerModel.findCustomerByUsername(customer.username)
+        customerModel.findCustomerById(dbCustomer._id)
             .then(function (customer) {
             res.json(customer);
         })

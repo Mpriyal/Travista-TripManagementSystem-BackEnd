@@ -9,6 +9,7 @@ function createCustomer(customer) {
 function updateCustomer(newCustomer) {
     customerModel.findById(newCustomer._id, function (err, customer) {
         customer.username = newCustomer.username;
+        customer.password = newCustomer.password;
         customer.lastName = newCustomer.lastName;
         customer.firstName = newCustomer.firstName;
         customer.dateOfBirth = newCustomer.dateOfBirth;
