@@ -1,18 +1,15 @@
 var mongoose = require('mongoose');
 
 var restaurantSchema = mongoose.Schema({
-    id: Number,
+    owners: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'OwnerModel'
+    },
     name: String,
     address: String,
     city: String,
-    state: String,
-    area: String,
-    postal_code: Number,
-    country: String,
     phone: Number,
-    price: Number,
-    reserve_url: String,
-    image_url: String
+    price: Number
 }, {collection: 'restaurant'});
 
 module.exports = restaurantSchema;

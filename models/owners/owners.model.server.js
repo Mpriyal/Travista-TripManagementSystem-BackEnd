@@ -33,11 +33,12 @@ function findOwnerByCredentials(credentials) {
 }
 
 function findOwnerById(ownerId) {
-    return ownerModel.findById(ownerId);
+    return ownersModel.findById(ownerId);
 }
 
 function findOwnerByUsername(username) {
-    return ownersModel.count({username: username});
+    console.log("Came inside service 2" + username)
+    return ownersModel.find({username: username});
 }
 
 function findAllOwners() {

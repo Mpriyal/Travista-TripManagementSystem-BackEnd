@@ -2,6 +2,7 @@ module.exports = function (app) {
     app.get('/api/restaurant', findAllRestaurants);
     app.get('/api/restaurant/:restaurantId', findRestaurantById);
     app.post('/api/restaurant', createRestaurant);
+    app.delete('/api/restaurant/:restaurantId', deleteRestaurant);
     // app.get('/api/profile', profile);
     // app.post('/api/logout', logout);
     // app.post('/api/login', login);
@@ -66,7 +67,14 @@ module.exports = function (app) {
         restaurantModel.updateRestaurant(restaurant);
         res.send(200);
     }
-
+    function deleteRestaurant(req, res) {
+        var restaurantId = req.params['restaurantId'];
+        console.log(restaurantId + "#!@#!!@#!231")
+        restaurantModel.deleteRestaurant(restaurantId)
+            .then(function (restaurants) {
+                res.json(restaurants);
+            })
+    }
     function findAllRestaurants(req, res) {
         restaurantModel.findAllRestaurants()
             .then(function (restaurants) {

@@ -1,7 +1,10 @@
 var mongoose = require('mongoose');
 
 var hotelSchema = mongoose.Schema({
-    ownerId: String,
+    owners: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'OwnerModel'
+    },
     name: String,
     location: {
         latitude: Number,

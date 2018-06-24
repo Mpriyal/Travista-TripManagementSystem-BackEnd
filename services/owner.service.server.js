@@ -3,6 +3,7 @@ module.exports = function (app) {
     app.get('/api/owner/:ownerId', findOwnerById);
     app.post('/api/owner', createOwner);
     app.get('/api/businessProfile', businessProfile);
+    app.get('/api/businessProfile/:username', findOwnerByUsername);
     app.post('/api/logout', logout);
     app.post('/api/businessLogin', businessLogin);
     app.put('/api/owner/:ownerId', updateOwner);
@@ -83,5 +84,15 @@ module.exports = function (app) {
                     res.json(owner);
                 })
         }
+    }
+
+    function findOwnerByUsername(req,res) {
+        var username = req.params['username']
+        console.log("Came inside service" + username + "$$$$$$$$$$$")
+        ownerModel.findOwnerByUsername(username)
+            .then(function(owner){
+                console.log(owner);
+                res.json(owner)
+            })
     }
 }
