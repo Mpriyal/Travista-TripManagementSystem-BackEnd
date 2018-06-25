@@ -8,6 +8,7 @@ function createHotel(hotel) {
 
 function updateHotel(newHotel) {
     hotelModel.findById(newHotel._id, function (err, hotel) {
+        console.log(hotel);
         hotel.name = newHotel.name;
         hotel.address = newHotel.address;
         hotel.phone = newHotel.phone;
@@ -28,7 +29,11 @@ function findAllHotels() {
 }
 
 function findHotelById(hotelId) {
-    return hotelModel.findById(hotelId);
+    return hotelModel.find({_id: hotelId});
+}
+
+function findHotelByOwnerId(ownerId) {
+    return hotelModel.find({owners: ownerId});
 }
 
 module.exports = {
@@ -36,5 +41,6 @@ module.exports = {
     updateHotel: updateHotel,
     deleteHotel: deleteHotel,
     findAllHotels: findAllHotels,
-    findHotelById: findHotelById
+    findHotelById: findHotelById,
+    findHotelByOwnerId : findHotelByOwnerId
 };

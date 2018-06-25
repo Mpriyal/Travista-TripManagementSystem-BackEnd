@@ -1,6 +1,7 @@
 module.exports = function (app) {
     app.get('/api/car', findAllCars);
     app.get('/api/car/:carId', findCarById);
+    app.get('/api/car/owner/:ownerId', findCarByOwnerId);
     app.post('/api/car', createCar);
     app.put('/api/car/:carId', updateCar);
     app.delete('/api/car/:carId', deleteCar);
@@ -42,6 +43,13 @@ module.exports = function (app) {
         carModel.findAllCars()
             .then(function (cars) {
                 res.send(cars);
+            })
+    }
+    function findCarByOwnerId(req, res) {
+        var id = req.params['ownerId'];
+        carModel.findCarByOwnerId(id)
+            .then(function (car) {
+                res.json(car);
             })
     }
 }

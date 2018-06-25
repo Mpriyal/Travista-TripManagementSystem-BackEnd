@@ -30,6 +30,9 @@ function updateCar(newCar) {
         });
     });
 }
+function findCarByOwnerId(ownerId) {
+    return carModel.find({owners: ownerId});
+}
 
 function findAllCars() {
     return carModel.find();
@@ -40,7 +43,8 @@ var api = {
     updateCar: updateCar,
     deleteCar: deleteCar,
     findAllCars: findAllCars,
-    findCarById: findCarById
+    findCarById: findCarById,
+    findCarByOwnerId: findCarByOwnerId
 };
 
 module.exports = api;
