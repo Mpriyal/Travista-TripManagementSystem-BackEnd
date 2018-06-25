@@ -18,26 +18,20 @@ module.exports = function (app) {
 
     function findRestaurantByOwnerId(req, res) {
         var id = req.params['ownerId'];
+        console.log(id);
         restaurantModel.findRestaurantByOwnerId(id)
-            .then(function (car) {
-                res.json(car);
+            .then(function (restaurant) {
+                console.log(restaurant);
+                res.json(restaurant);
             })
     }
     function createRestaurant(req, res) {
         var restaurant = req.body;
-        restaurantModel.findRestaurantByName(restaurant.name)
-            .then(function (count) {
-                if(count === 0){
                     restaurantModel.createRestaurant(restaurant)
                         .then(function (restaurant) {
                             req.session['currentRestaurant'] = restaurant;
                             res.send(restaurant);
                         })
-                }
-                else{
-                    res.send({Status: "Restaurant name is taken"});
-                }
-            });
     }
     function updateRestaurant(req, res) {
         var restaurant = req.body;
