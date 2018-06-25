@@ -76,7 +76,6 @@ module.exports = function (app) {
     function businessProfile(req, res) {
         var owner = req.session['currentUser'];
         if (owner == null) {
-            console.log("hi");
             res.sendStatus(403);
         }
         else {
