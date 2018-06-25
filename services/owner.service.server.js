@@ -12,14 +12,16 @@ module.exports = function (app) {
     var ownerModel = require('../models/owners/owners.model.server');
 
     function createOwner(req, res) {
-        var owner = req.body;
-        ownerModel.findOwnerByUsername(owner.username)
-            .then(function (count) {
-                if (count === 0) {
-                    ownerModel.createOwner(owner)
-                        .then(function (owner) {
-                            req.session['currentUser'] = owner;
-                            res.send(owner);
+        var newOwner = req.body;
+        console.log(newOwner);
+        ownerModel.findOwnerByUsername(newOwner.username)
+            .then(function (owner) {
+                console.log(owner);
+                if (owner.length == 0) {
+                    ownerModel.createOwner(newOwner)
+                        .then(function (newOwner) {
+                            req.session['currentUser'] = newOwner;
+                            res.send(newOwner);
                         })
                 }
                 else {

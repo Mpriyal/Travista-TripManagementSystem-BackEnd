@@ -7,7 +7,7 @@ function createOwner(owner) {
 }
 
 function updateOwner(newOwner) {
-    ownersModel.findById(newOwner._id, function (err, owner) {
+    ownersModel.find({_id : newOwner._id}, function (err, owner) {
         owner.businessId = newOwner.businessId;
         owner.username = newOwner.username;
         owner.lastName = newOwner.lastName;
@@ -33,11 +33,10 @@ function findOwnerByCredentials(credentials) {
 }
 
 function findOwnerById(ownerId) {
-    return ownersModel.findById(ownerId);
+    return ownersModel.find({_id : ownerId});
 }
 
 function findOwnerByUsername(username) {
-    console.log("Came inside service 2" + username)
     return ownersModel.find({username: username});
 }
 

@@ -8,6 +8,7 @@ function createCustomer(customer) {
 
 function updateCustomer(newCustomer) {
     customerModel.findOne({_id : newCustomer._id}, function (err, customer) {
+        console.log(customer);
         customer.password = newCustomer.password;
         customer.lastName = newCustomer.lastName;
         customer.firstName = newCustomer.firstName;
