@@ -20,7 +20,6 @@ module.exports = function (app) {
 
     function findRestaurantByOwnerId(req, res) {
         var id = req.params['ownerId'];
-        console.log(id);
         restaurantModel.findRestaurantByOwnerId(id)
             .then(function (restaurant) {
                 console.log(restaurant);

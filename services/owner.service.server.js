@@ -61,7 +61,6 @@ module.exports = function (app) {
 
     function businessLogin(req, res) {
         var credentials = req.body;
-        console.log(credentials);
         ownerModel
             .findOwnerByCredentials(credentials)
             .then(function (owner) {
