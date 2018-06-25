@@ -90,7 +90,6 @@ module.exports = function (app) {
 
     function findOwnerByUsername(req,res) {
         var username = req.params['username']
-        console.log("Came inside service" + username + "$$$$$$$$$$$")
         ownerModel.findOwnerByUsername(username)
             .then(function(owner){
                 console.log(owner);

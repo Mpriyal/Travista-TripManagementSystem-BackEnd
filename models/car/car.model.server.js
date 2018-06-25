@@ -3,25 +3,28 @@ var carSchema = require('./car.schema.server');
 var carModel = mongoose.model('CarModel', carSchema);
 
 function findCarById(carId) {
-    return carModel.find({_id : carId});
+    return carModel.findById(carId);
 }
 
 function createCar(car) {
     return carModel.create(car);
 }
 
+function deleteCar(carId) {
+    return carModel.remove({_id: carId})
+}
+
 function updateCar(newCar) {
-    carModel.find({_id : newCar._id}, function (err, car) {
-        car.description = newCar.description;
+    carModel.findById(newCar._id, function (err, car) {
         car.address = newCar.address;
-        car.vehicle_info.transmission = newCar.vehicle_info.transmission;
-        car.vehicle_info.fuel = newCar.vehicle_info.fuel;
-        car.vehicle_info.air_conditioning = newCar.vehicle_info.air_conditioning;
-        car.vehicle_info.category = newCar.vehicle_info.category;
-        car.vehicle_info.type = newCar.vehicle_info.type;
-        car.price.type = newCar.price.type;
-        car.price.amount = newCar.price.amount;
-        car.price.currency = newCar.price.currency;
+        car.transmission = newCar.transmission;
+        car.fuel = newCar.fuel;
+        car.air_conditioning = newCar.air_conditioning;
+        car.category = newCar.category;
+        car.type = newCar.type;
+        car.rate = newCar.rate;
+        car.start_date = newCar.start_date;
+        car.end_date = newCar.end_date;
         car.save(function (err) {
             if (err) throw err;
         });
@@ -35,6 +38,7 @@ function findAllCars() {
 var api = {
     createCar: createCar,
     updateCar: updateCar,
+    deleteCar: deleteCar,
     findAllCars: findAllCars,
     findCarById: findCarById
 };

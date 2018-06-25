@@ -6,10 +6,6 @@ var hotelSchema = mongoose.Schema({
         ref: 'OwnerModel'
     },
     name: String,
-    location: {
-        latitude: Number,
-        longitude: Number
-    },
     address: String,
     phone: Number,
     customers: [String],

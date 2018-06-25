@@ -10,21 +10,6 @@ module.exports = function (app) {
 
     var restaurantModel = require('../models/restaurant/restaurant.model.server');
 
-    // function login(req, res) {
-    //     var credentials = req.body;
-    //     ownerModel
-    //         .findOwnerByCredentials(credentials)
-    //         .then(function(owner) {
-    //             req.session['currentowner'] = owner;
-    //             res.json(owner);
-    //         })
-    // }
-
-    // function logout(req, res) {
-    //     req.session.destroy();
-    //     res.send(200);
-    // }
-
     function findRestaurantById(req, res) {
         var id = req.params['restaurantId'];
         restaurantModel.findRestaurantById(id)

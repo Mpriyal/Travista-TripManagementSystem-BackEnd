@@ -3,6 +3,8 @@ module.exports = function (app) {
     app.get('/api/car/:carId', findCarById);
     app.post('/api/car', createCar);
     app.put('/api/car/:carId', updateCar);
+    app.delete('/api/car/:carId', deleteCar);
+
 
     var carModel = require('../models/car/car.model.server');
 
@@ -11,6 +13,14 @@ module.exports = function (app) {
         carModel.findCarById(id)
             .then(function (car) {
                 res.json(car);
+            })
+    }
+
+    function deleteCar(req, res) {
+        var carId = req.params['carId'];
+        carModel.deleteCar(carId)
+            .then(function (cars) {
+                res.json(cars);
             })
     }
 
