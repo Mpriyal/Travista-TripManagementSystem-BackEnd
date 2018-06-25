@@ -5,20 +5,15 @@ var carSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'OwnerModel'
     },
-    description: String,
     address: String,
-    vehicle_info: {
-        transmission: String,
-        fuel: String,
-        air_conditioning: String,
-        category: String,
-        type: String
-    },
-    price: {
-        type: String,
-        amount: String,
-        currency: String
-    }
+    transmission: String,
+    fuel: String,
+    air_conditioning: String,
+    category: String,
+    type: String,
+    rate: Number,
+    start_date:  Date,
+    end_date: Date
 }, {collection: 'car'});
 
 module.exports = carSchema;

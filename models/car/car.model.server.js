@@ -3,7 +3,7 @@ var carSchema = require('./car.schema.server');
 var carModel = mongoose.model('CarModel', carSchema);
 
 function findCarById(carId) {
-    return carModel.findById(carId);
+    return carModel.find({_id : carId});
 }
 
 function createCar(car) {
@@ -11,10 +11,10 @@ function createCar(car) {
 }
 
 function updateCar(newCar) {
-    carModel.findById(newCar._id, function (err, car) {
+    carModel.find({_id : newCar._id}, function (err, car) {
         car.description = newCar.description;
         car.address = newCar.address;
-       car.vehicle_info.transmission = newCar.vehicle_info.transmission;
+        car.vehicle_info.transmission = newCar.vehicle_info.transmission;
         car.vehicle_info.fuel = newCar.vehicle_info.fuel;
         car.vehicle_info.air_conditioning = newCar.vehicle_info.air_conditioning;
         car.vehicle_info.category = newCar.vehicle_info.category;

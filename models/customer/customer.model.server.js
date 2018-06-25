@@ -7,8 +7,7 @@ function createCustomer(customer) {
 }
 
 function updateCustomer(newCustomer) {
-    customerModel.findById(newCustomer._id, function (err, customer) {
-        customer.username = newCustomer.username;
+    customerModel.findOne({_id : newCustomer._id}, function (err, customer) {
         customer.password = newCustomer.password;
         customer.lastName = newCustomer.lastName;
         customer.firstName = newCustomer.firstName;
@@ -31,7 +30,7 @@ function findCustomerByCredentials(credentials) {
 }
 
 function findCustomerById(customerId) {
-    return customerModel.findById(customerId);
+    return customerModel.find({_id : customerId});
 }
 
 function findCustomerByUsername(username) {
