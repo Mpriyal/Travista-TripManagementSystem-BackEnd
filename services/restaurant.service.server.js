@@ -18,7 +18,7 @@ module.exports = function (app) {
 
     function findRestaurantByOwnerId(req, res) {
         var id = req.params['ownerId'];
-        restaurantModelModel.findRestaurantByOwnerId(id)
+        restaurantModel.findRestaurantByOwnerId(id)
             .then(function (car) {
                 res.json(car);
             })
