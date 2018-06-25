@@ -2,7 +2,7 @@ module.exports = function (app) {
     app.get('/api/restaurant', findAllRestaurants);
     app.get('/api/restaurant/:restaurantId', findRestaurantById);
     app.post('/api/restaurant', createRestaurant);
-    app.get('/api/car/owner/:ownerId', findRestaurantByOwnerId);
+    app.get('/api/restaurant/owner/:ownerId', findRestaurantByOwnerId);
     app.delete('/api/restaurant/:restaurantId', deleteRestaurant);
     app.put('/api/restaurant/:restaurantId', updateRestaurant);
 
