@@ -34,6 +34,9 @@ function findHotelById(hotelId) {
 function findHotelByCity(city) {
     return hotelModel.find({address:{'$regex' : city, '$options' : 'i'}})
 }
+function findHotelByOwnerId(ownerId) {
+    return hotelModel.find({owners: ownerId});
+}
 
 module.exports = {
     createHotel: createHotel,
@@ -41,5 +44,6 @@ module.exports = {
     deleteHotel: deleteHotel,
     findAllHotels: findAllHotels,
     findHotelById: findHotelById,
-    findHotelByCity: findHotelByCity
+    findHotelByCity: findHotelByCity,
+    findHotelByOwnerId: findHotelByOwnerId
 };
