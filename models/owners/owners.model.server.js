@@ -7,11 +7,12 @@ function createOwner(owner) {
 }
 
 function updateOwner(newOwner) {
-    ownersModel.find({_id : newOwner._id}, function (err, owner) {
-        owner.businessId = newOwner.businessId;
+    ownersModel.findById(newOwner._id, function (err, owner) {
+        console.log(owner)
         owner.username = newOwner.username;
         owner.lastName = newOwner.lastName;
         owner.firstName = newOwner.firstName;
+        owner.password = newOwner.password;
         owner.email = newOwner.email;
         owner.address = newOwner.address;
         owner.phoneNumber = newOwner.phoneNumber;
