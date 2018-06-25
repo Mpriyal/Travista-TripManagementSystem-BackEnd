@@ -34,6 +34,16 @@ function findCarByOwnerId(ownerId) {
     return carModel.find({owners: ownerId});
 }
 
+function findCarByLocation(location) {
+    return carModel.find({address:{'$regex' : location, '$options' : 'i'}})
+}
+
+// function findCarByDates(start_date, end_date) {
+//     console.log(start_date.toString().split('T')[0]);
+//     console.log(end_date.toString().split('T')[0]);
+//     // return carModel.find({start})
+// }
+
 function findAllCars() {
     return carModel.find();
 }
@@ -44,7 +54,9 @@ var api = {
     deleteCar: deleteCar,
     findAllCars: findAllCars,
     findCarById: findCarById,
-    findCarByOwnerId: findCarByOwnerId
+    findCarByOwnerId: findCarByOwnerId,
+    findCarByLocation: findCarByLocation
+    // findCarByDates: findCarByDates
 };
 
 module.exports = api;

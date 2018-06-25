@@ -3,6 +3,8 @@ module.exports = function (app) {
     app.get('/api/car/:carId', findCarById);
     app.get('/api/car/owner/:ownerId', findCarByOwnerId);
     app.post('/api/car', createCar);
+    app.get('/api/car/location/:location', findCarByLocation);
+    // app.get('/api/car/dates/:start-date/:end-date', findCarByDates);
     app.put('/api/car/:carId', updateCar);
     app.delete('/api/car/:carId', deleteCar);
 
@@ -52,4 +54,21 @@ module.exports = function (app) {
                 res.json(car);
             })
     }
+
+    function findCarByLocation(req, res) {
+        var location = req.params['location'];
+        carModel.findCarByLocation(location)
+            .then(function (car) {
+                res.json(car);
+            })
+    }
+
+    // function findCarByDates(req, res) {
+        //     var start_date = req.params['start_date'];
+        //     var end_date = req.params['end_date'];
+        //     carModel.findCarByDates(start_date,end_date)
+        //         .then(function (car) {
+        //             res.json(car);
+        //         })
+        // }
 }
