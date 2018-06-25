@@ -52,7 +52,7 @@ module.exports = function (app) {
         customerModel.findCustomerById(id)
             .then(function (customer) {
                 res.json(customer);
-            })
+            });
     }
 
   function login(req, res) {
