@@ -19,7 +19,7 @@ module.exports = function (app) {
 
     function deleteCoupon(req, res) {
         var couponId = req.params['couponId'];
-        couponModel.deleteCoupon(carId)
+        couponModel.deleteCoupon(couponId)
             .then(function (coupons) {
                 res.json(coupons);
             })
@@ -47,6 +47,7 @@ module.exports = function (app) {
     }
     function findCouponByHotelId(req, res) {
         var id = req.params['hotelId'];
+        console.log(id);
         couponModel.findCouponByHotelId(id)
             .then(function (coupon) {
                 res.json(coupon);

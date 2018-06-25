@@ -13,10 +13,8 @@ module.exports = function (app) {
 
     function createOwner(req, res) {
         var newOwner = req.body;
-        console.log(newOwner);
         ownerModel.findOwnerByUsername(newOwner.username)
             .then(function (owner) {
-                console.log(owner);
                 if (owner.length == 0) {
                     ownerModel.createOwner(newOwner)
                         .then(function (newOwner) {
@@ -33,6 +31,7 @@ module.exports = function (app) {
     function updateOwner(req, res) {
         var owner = req.body;
         ownerModel.updateOwner(owner);
+        req.session['currentUser'] = owner;
         res.send(200);
     }
 
@@ -77,11 +76,13 @@ module.exports = function (app) {
     function businessProfile(req, res) {
         var owner = req.session['currentUser'];
         if (owner == null) {
+            console.log("hi");
             res.sendStatus(403);
         }
         else {
             ownerModel.findOwnerById(owner._id)
                 .then(function (owner) {
+                    req.session['currentUser'] = owner;
                     res.json(owner);
                 })
         }
@@ -91,7 +92,7 @@ module.exports = function (app) {
         var username = req.params['username']
         ownerModel.findOwnerByUsername(username)
             .then(function(owner){
-                console.log(owner);
+                req.session['currentUser'] = owner;
                 res.json(owner)
             })
     }

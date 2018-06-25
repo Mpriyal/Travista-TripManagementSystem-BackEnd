@@ -29,7 +29,7 @@ function findCouponById(couponId) {
 }
 
 function findCouponByHotelId(hotelId) {
-    return couponModel.find({coupon: hotelId});
+    return couponModel.find({hotel: hotelId});
 }
 
 module.exports = {

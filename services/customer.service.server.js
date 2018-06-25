@@ -29,6 +29,7 @@ module.exports = function (app) {
     function updateCustomer(req, res) {
         var customer = req.body;
         customerModel.updateCustomer(customer);
+        req.session['currentUser'] = customer;
         res.send(200);
     }
 
@@ -74,7 +75,8 @@ module.exports = function (app) {
         var dbCustomer = customerModel.findCustomerByUsername(customer.username)
         customerModel.findCustomerById(dbCustomer._id)
             .then(function (customer) {
-            res.json(customer);
+                req.session['currentUser'] = customer;
+                res.json(customer);
         })
     }
   }
