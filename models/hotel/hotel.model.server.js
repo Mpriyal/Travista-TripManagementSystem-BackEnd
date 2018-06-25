@@ -34,6 +34,7 @@ function findHotelById(hotelId) {
 function findHotelByCity(city) {
     return hotelModel.find({address:{'$regex' : city, '$options' : 'i'}})
 }
+
 function findHotelByOwnerId(ownerId) {
     return hotelModel.find({owners: ownerId});
 }

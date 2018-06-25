@@ -28,8 +28,12 @@ function updateRestaurant(newRestaurant) {
     });
 }
 
+function findRestaurantByCity(city) {
+    return restaurantModel.find({city:{'$regex' : city, '$options' : 'i'}})
+}
+
 function findRestaurantByName(name) {
-    return restaurantModel.count({name: name});
+    return restaurantModel.find({name:{'$regex' : name, '$options' : 'i'}})
 }
 
 function findAllRestaurants() {
@@ -43,7 +47,8 @@ var api = {
     findAllRestaurants: findAllRestaurants,
     findRestaurantById: findRestaurantById,
     findRestaurantByName: findRestaurantByName,
-    findRestaurantByOwnerId: findRestaurantByOwnerId
+    findRestaurantByOwnerId: findRestaurantByOwnerId,
+    findRestaurantByCity: findRestaurantByCity
 };
 
 module.exports = api;
