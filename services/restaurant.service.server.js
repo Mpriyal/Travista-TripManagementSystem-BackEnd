@@ -2,10 +2,8 @@ module.exports = function (app) {
     app.get('/api/restaurant', findAllRestaurants);
     app.get('/api/restaurant/:restaurantId', findRestaurantById);
     app.post('/api/restaurant', createRestaurant);
+    app.get('/api/car/owner/:ownerId', findRestaurantByOwnerId);
     app.delete('/api/restaurant/:restaurantId', deleteRestaurant);
-    // app.get('/api/profile', profile);
-    // app.post('/api/logout', logout);
-    // app.post('/api/login', login);
     app.put('/api/restaurant/:restaurantId', updateRestaurant);
 
     var restaurantModel = require('../models/restaurant/restaurant.model.server');
@@ -18,19 +16,13 @@ module.exports = function (app) {
             })
     }
 
-    // function profile(req, res) {
-    //     var owner = req.session['currentowner'];
-    //     if (owner == null){
-    //         res.sendStatus(403);
-    //     }
-    //     else {
-    //         ownerModel.findOwnerById(owner._id)
-    //             .then(function (owner) {
-    //                 res.json(owner);
-    //             })
-    //     }
-    // }
-
+    function findRestaurantByOwnerId(req, res) {
+        var id = req.params['ownerId'];
+        restaurantModelModel.findRestaurantByOwnerId(id)
+            .then(function (car) {
+                res.json(car);
+            })
+    }
     function createRestaurant(req, res) {
         var restaurant = req.body;
         restaurantModel.findRestaurantByName(restaurant.name)

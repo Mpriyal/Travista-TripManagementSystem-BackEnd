@@ -10,10 +10,11 @@ function createRestaurant(restaurant) {
     return restaurantModel.create(restaurant);
 }
 function deleteRestaurant(restaurantId) {
-    console.log(restaurantId + "#!@#!!@#!231")
     return restaurantModel.remove({_id: restaurantId})
 }
-
+function findRestaurantByOwnerId(ownerId) {
+    return restaurantModel.find({owners: ownerId});
+}
 function updateRestaurant(newRestaurant) {
     restaurantModel.findById(newRestaurant._id, function (err, restaurant) {
         restaurant.name = newRestaurant.name;
@@ -42,6 +43,7 @@ var api = {
     findAllRestaurants: findAllRestaurants,
     findRestaurantById: findRestaurantById,
     findRestaurantByName: findRestaurantByName,
+    findRestaurantByOwnerId: findRestaurantByOwnerId
 };
 
 module.exports = api;
