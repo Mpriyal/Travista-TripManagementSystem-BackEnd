@@ -31,10 +31,15 @@ function findHotelById(hotelId) {
     return hotelModel.findById(hotelId);
 }
 
+function findHotelByCity(city) {
+    return hotelModel.find({address:{'$regex' : city, '$options' : 'i'}})
+}
+
 module.exports = {
     createHotel: createHotel,
     updateHotel: updateHotel,
     deleteHotel: deleteHotel,
     findAllHotels: findAllHotels,
-    findHotelById: findHotelById
+    findHotelById: findHotelById,
+    findHotelByCity: findHotelByCity
 };

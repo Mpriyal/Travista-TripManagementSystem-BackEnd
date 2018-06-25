@@ -3,6 +3,7 @@ module.exports = function (app) {
     app.get('/api/hotel', findAllHotels);
     app.get('/api/hotel/:hotelId', findHotelById);
     app.post('/api/hotel', createHotel);
+    app.get('/api/hotel/city/:city', findHotelByCity);
     app.put('/api/hotel/:hotelId', updateHotel);
     app.delete('/api/hotel/:hotelId', deleteHotel);
 
@@ -41,6 +42,14 @@ module.exports = function (app) {
     function findHotelById(req, res) {
         var id = req.params['hotelId'];
         hotelModel.findHotelById(id)
+            .then(function (hotel) {
+                res.json(hotel);
+            })
+    }
+
+    function findHotelByCity(req, res) {
+        var city = req.params['city'];
+        hotelModel.findHotelByCity(city)
             .then(function (hotel) {
                 res.json(hotel);
             })
