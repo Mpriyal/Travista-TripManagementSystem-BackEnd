@@ -3,6 +3,7 @@ module.exports = function (app) {
   app.get('/api/customer/:customerId', findCustomerById);
   app.post('/api/customer', createCustomer);
   app.get('/api/profile', profile);
+  app.get('/api/profile2', profile2);
   app.post('/api/login', login);
   app.put('/api/customer/:customerId', updateCustomer);
   app.delete('/api/customer/:customerId', deleteCustomer);
@@ -66,18 +67,48 @@ module.exports = function (app) {
       })
   }
 
-  function profile(req, res) {
-    var customer = req.session['currentUser'];
-    if (customer == null){
-        res.sendStatus(403);
+  // function profile(req, res) {
+  //   var customer = req.session['currentUser'];
+  //   if (customer == null){
+  //       res.sendStatus(403);
+  //   }
+  //   else {
+  //       var dbCustomer = customerModel.findCustomerByUsername(customer.username)
+  //       customerModel.findCustomerById(dbCustomer._id)
+  //           .then(function (customer) {
+  //               req.session['currentUser'] = customer;
+  //               res.json(customer);
+  //       })
+  //   }
+  // }
+    function profile(req, res) {
+        var customer = req.session['currentUser'];
+        console.log(customer);
+        console.log("jjjj");
+        if (customer == null){
+            res.sendStatus(403);
+        }
+        else {
+            customerModel.findCustomerByUsername(customer.username)
+                .then(function (customer) {
+                    req.session['currentUser'] = customer;
+                    res.json(customer);
+                })
+        }
     }
-    else {
-        var dbCustomer = customerModel.findCustomerByUsername(customer.username)
-        customerModel.findCustomerById(dbCustomer._id)
-            .then(function (customer) {
-                req.session['currentUser'] = customer;
-                res.json(customer);
-        })
+    function profile2(req, res) {
+        var customer = req.session['currentUser'];
+        console.log(customer);
+        console.log("jjjj");
+        if (customer == null || customer.length == 0){
+            res.sendStatus(403);
+        }
+        else {
+            customerModel.findCustomerByName(customer.username)
+                .then(function (customer) {
+                    req.session['currentUser'] = customer;
+                    res.json(customer);
+                })
+        }
     }
-  }
 }

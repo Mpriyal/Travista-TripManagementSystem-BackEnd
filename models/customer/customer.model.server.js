@@ -27,7 +27,7 @@ function deleteCustomer(customerId) {
 }
 
 function findCustomerByCredentials(credentials) {
-    return customerModel.findOne(credentials, {username: 1, password: 1});
+    return customerModel.findOne(credentials);
 }
 
 function findCustomerById(customerId) {
@@ -37,7 +37,9 @@ function findCustomerById(customerId) {
 function findCustomerByUsername(username) {
     return customerModel.count({username: username});
 }
-
+function findCustomerByName(username) {
+    return customerModel.find({username: username});
+}
 function findAllCustomers() {
     return customerModel.find();
 }
@@ -49,6 +51,7 @@ var api = {
     findCustomerById: findCustomerById,
     findCustomerByCredentials: findCustomerByCredentials,
     findCustomerByUsername: findCustomerByUsername,
+    findCustomerByName: findCustomerByName,
     deleteCustomer: deleteCustomer
 };
 
