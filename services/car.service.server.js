@@ -10,6 +10,7 @@ module.exports = function (app) {
 
 
     var carModel = require('../models/car/car.model.server');
+    var ownerModel = require('../models/owners/owners.model.server');
 
     function findCarById(req, res) {
         var id = req.params['carId'];
@@ -29,6 +30,11 @@ module.exports = function (app) {
 
     function createCar(req, res) {
         var car = req.body;
+        var ownerId = car.owners
+        ownerModel.findOwnerById(ownerId)
+            .then(function(owner){
+                req.session['currentUser'] = owner[0];
+            });
         carModel.createCar(car)
             .then(function (car) {
                 res.json(car);
@@ -63,12 +69,4 @@ module.exports = function (app) {
             })
     }
 
-    // function findCarByDates(req, res) {
-        //     var start_date = req.params['start_date'];
-        //     var end_date = req.params['end_date'];
-        //     carModel.findCarByDates(start_date,end_date)
-        //         .then(function (car) {
-        //             res.json(car);
-        //         })
-        // }
 }

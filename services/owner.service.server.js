@@ -47,6 +47,7 @@ module.exports = function (app) {
         var id = req.params['ownerId'];
         ownerModel.findOwnerById(id)
             .then(function (owner) {
+                req.session['currentUser'] = owner;
                 res.json(owner);
             })
     }

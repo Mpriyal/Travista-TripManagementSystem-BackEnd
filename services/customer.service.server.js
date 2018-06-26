@@ -2,7 +2,7 @@ module.exports = function (app) {
   app.get('/api/customer', findAllCustomers);
   app.get('/api/customer/:customerId', findCustomerById);
   app.post('/api/customer', createCustomer);
-  app.get('/api/profile', profile);
+  // app.get('/api/profile', profile);
   app.get('/api/profile2', profile2);
   app.post('/api/login', login);
   app.put('/api/customer/:customerId', updateCustomer);
@@ -68,21 +68,7 @@ module.exports = function (app) {
       })
   }
 
-  // function profile(req, res) {
-  //   var customer = req.session['currentUser'];
-  //   if (customer == null){
-  //       res.sendStatus(403);
-  //   }
-  //   else {
-  //       var dbCustomer = customerModel.findCustomerByUsername(customer.username)
-  //       customerModel.findCustomerById(dbCustomer._id)
-  //           .then(function (customer) {
-  //               req.session['currentUser'] = customer;
-  //               res.json(customer);
-  //       })
-  //   }
-  // }
-    function profile(req, res) {
+    function profile2(req, res) {
         var customer = req.session['currentUser'];
         if (customer == null || customer.length == 0){
             res.sendStatus(403);
@@ -105,27 +91,5 @@ module.exports = function (app) {
                 })
         }
     }
-    function profile2(req, res) {
-        var customer = req.session['currentUser'];
-        if (customer == null || customer.length == 0){
-            res.sendStatus(403);
-        }
-        else {
-            var username = customer.username;
-            customerModel.findCustomerByName( username)
-                .then(function (customer) {
-                    if(customer.length === 0 ){
-                        ownerModel.findOwnerByUsername(username)
-                            .then(function (owner) {
-                                req.session['currentUser'] = owner;
-                                res.json(owner);
-                        })
-                    }
-                    else {
-                        req.session['currentUser'] = customer;
-                        res.json(customer);
-                    }
-                })
-        }
     }
-}
+

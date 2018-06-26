@@ -9,6 +9,7 @@ module.exports = function (app) {
     app.put('/api/restaurant/:restaurantId', updateRestaurant);
 
     var restaurantModel = require('../models/restaurant/restaurant.model.server');
+    var ownerModel = require('../models/owners/owners.model.server');
 
     function findRestaurantById(req, res) {
         var id = req.params['restaurantId'];
@@ -28,6 +29,11 @@ module.exports = function (app) {
     }
     function createRestaurant(req, res) {
         var restaurant = req.body;
+        var ownerId = restaurant.owners
+        ownerModel.findOwnerById(ownerId)
+            .then(function(owner){
+                req.session['currentUser'] = owner[0];
+            });
                     restaurantModel.createRestaurant(restaurant)
                         .then(function (restaurant) {
                             req.session['currentRestaurant'] = restaurant;

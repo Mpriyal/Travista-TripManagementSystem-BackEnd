@@ -9,14 +9,20 @@ module.exports = function (app) {
     app.delete('/api/hotel/:hotelId', deleteHotel);
 
     var hotelModel = require('../models/hotel/hotel.model.server');
+    var ownerModel = require('../models/owners/owners.model.server');
 
     function createHotel(req, res) {
-        var ownerId = req.params['ownerId'];
         var hotel = req.body;
-        hotelModel.createHotel(hotel,ownerId)
+        var ownerId = hotel.owners
+        ownerModel.findOwnerById(ownerId)
+            .then(function(owner){
+                req.session['currentUser'] = owner[0];
+            });
+        hotelModel.createHotel(hotel)
             .then(function (hotel) {
                 res.json(hotel);
-            })
+            });
+
     }
     function findHotelByOwnerId(req, res) {
         var id = req.params['ownerId'];
