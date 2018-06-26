@@ -9,6 +9,7 @@ module.exports = function (app) {
   app.delete('/api/customer/:customerId', deleteCustomer);
 
   var customerModel = require('../models/customer/customer.model.server');
+  var ownerModel = require('../models/owners/owners.model.server');
 
     function createCustomer(req, res) {
         var customer = req.body;
@@ -83,31 +84,47 @@ module.exports = function (app) {
   // }
     function profile(req, res) {
         var customer = req.session['currentUser'];
-        console.log(customer);
-        console.log("jjjj");
-        if (customer == null){
+        if (customer == null || customer.length == 0){
             res.sendStatus(403);
         }
         else {
-            customerModel.findCustomerByUsername(customer.username)
+            var username = customer.username;
+            customerModel.findCustomerByName( username)
                 .then(function (customer) {
-                    req.session['currentUser'] = customer;
-                    res.json(customer);
+                    if(customer.length === 0 ){
+                        ownerModel.findOwnerByUsername(username)
+                            .then(function (owner) {
+                                req.session['currentUser'] = owner;
+                                res.json(owner);
+                            })
+                    }
+                    else {
+                        req.session['currentUser'] = customer;
+                        res.json(customer);
+                    }
                 })
         }
     }
     function profile2(req, res) {
         var customer = req.session['currentUser'];
-        console.log(customer);
-        console.log("jjjj");
         if (customer == null || customer.length == 0){
             res.sendStatus(403);
         }
         else {
-            customerModel.findCustomerByName(customer.username)
+            var username = customer.username;
+            customerModel.findCustomerByName( username)
                 .then(function (customer) {
-                    req.session['currentUser'] = customer;
-                    res.json(customer);
+                    if(customer.length === 0 ){
+                        ownerModel.findOwnerByUsername(username)
+                            .then(function (owner) {
+                                req.session['currentUser'] = owner;
+                                res.json(owner);
+                        })
+                    }
+                    else {
+                        req.session['currentUser'] = customer;
+                        res.json(customer);
+                    }
                 })
         }
     }
