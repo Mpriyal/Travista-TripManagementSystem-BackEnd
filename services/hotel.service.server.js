@@ -25,6 +25,8 @@ module.exports = function (app) {
 
     }
     function findHotelByOwnerId(req, res) {
+        var customer = req.session['currentUser'];
+        req.session['currentUser'] = customer;
         var id = req.params['ownerId'];
         hotelModel.findHotelByOwnerId(id)
             .then(function (hotel) {
@@ -32,6 +34,8 @@ module.exports = function (app) {
             })
     }
     function updateHotel(req, res) {
+        var customer = req.session['currentUser'];
+        req.session['currentUser'] = customer;
         var hotel = req.body;
         hotelModel.updateHotel(hotel);
         res.send(200);
@@ -39,6 +43,8 @@ module.exports = function (app) {
 
     function deleteHotel(req, res) {
         var hotelId = req.params['hotelId'];
+        var customer = req.session['currentUser'];
+        req.session['currentUser'] = customer;
         hotelModel.deleteHotel(hotelId)
             .then(function (hotels) {
                 res.json(hotels);
@@ -46,6 +52,8 @@ module.exports = function (app) {
     }
 
     function findAllHotels(req, res) {
+        var customer = req.session['currentUser'];
+        req.session['currentUser'] = customer;
         hotelModel.findAllHotels()
             .then(function (hotels) {
                 res.send(hotels);
@@ -54,6 +62,8 @@ module.exports = function (app) {
 
     function findHotelById(req, res) {
         var id = req.params['hotelId'];
+        var customer = req.session['currentUser'];
+        req.session['currentUser'] = customer;
         hotelModel.findHotelById(id)
             .then(function (hotel) {
                 res.json(hotel);
@@ -62,6 +72,8 @@ module.exports = function (app) {
 
     function findHotelByCity(req, res) {
         var city = req.params['city'];
+        var customer = req.session['currentUser'];
+        req.session['currentUser'] = customer;
         hotelModel.findHotelByCity(city)
             .then(function (hotel) {
                 res.json(hotel);

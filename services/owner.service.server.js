@@ -53,6 +53,8 @@ module.exports = function (app) {
     }
 
     function findAllOwners(req, res) {
+        var customer = req.session['currentUser'];
+        req.session['currentUser'] = customer;
         ownerModel.findAllOwners()
             .then(function (owners) {
                 res.send(owners);

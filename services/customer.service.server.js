@@ -44,6 +44,8 @@ module.exports = function (app) {
     }
 
     function findAllCustomers(req, res) {
+        var customer = req.session['currentUser'];
+        req.session['currentUser'] = customer;
         customerModel.findAllCustomers()
             .then(function (customers) {
                 res.send(customers);

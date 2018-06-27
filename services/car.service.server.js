@@ -14,6 +14,9 @@ module.exports = function (app) {
 
     function findCarById(req, res) {
         var id = req.params['carId'];
+        var customer = req.session['currentUser'];
+        req.session['currentUser'] = customer;
+
         carModel.findCarById(id)
             .then(function (car) {
                 res.json(car);
@@ -22,6 +25,9 @@ module.exports = function (app) {
 
     function deleteCar(req, res) {
         var carId = req.params['carId'];
+        var customer = req.session['currentUser'];
+        req.session['currentUser'] = customer;
+
         carModel.deleteCar(carId)
             .then(function (cars) {
                 res.json(cars);
@@ -30,6 +36,8 @@ module.exports = function (app) {
 
     function createCar(req, res) {
         var car = req.body;
+        var customer = req.session['currentUser'];
+        req.session['currentUser'] = customer;
         var ownerId = car.owners
         ownerModel.findOwnerById(ownerId)
             .then(function(owner){
@@ -43,11 +51,15 @@ module.exports = function (app) {
 
     function updateCar(req, res) {
         var car = req.body;
+        var customer = req.session['currentUser'];
+        req.session['currentUser'] = customer;
         carModel.updateCar(car);
         res.send(200);
     }
 
     function findAllCars(req, res) {
+        var customer = req.session['currentUser'];
+        req.session['currentUser'] = customer;
         carModel.findAllCars()
             .then(function (cars) {
                 res.send(cars);
@@ -55,6 +67,8 @@ module.exports = function (app) {
     }
     function findCarByOwnerId(req, res) {
         var id = req.params['ownerId'];
+        var customer = req.session['currentUser'];
+        req.session['currentUser'] = customer;
         carModel.findCarByOwnerId(id)
             .then(function (car) {
                 res.json(car);
@@ -63,6 +77,8 @@ module.exports = function (app) {
 
     function findCarByLocation(req, res) {
         var location = req.params['location'];
+        var customer = req.session['currentUser'];
+        req.session['currentUser'] = customer;
         carModel.findCarByLocation(location)
             .then(function (car) {
                 res.json(car);
