@@ -11,7 +11,7 @@ var carSchema = mongoose.Schema({
     air_conditioning: String,
     category: String,
     type: String,
-    rate: Number,
+    rate: String,
     start_date:  Date,
     end_date: Date
 }, {collection: 'car'});

@@ -8,8 +8,8 @@ var restaurantSchema = mongoose.Schema({
     name: String,
     address: String,
     city: String,
-    phone: Number,
-    price: Number
+    phone: String,
+    price: String
 }, {collection: 'restaurant'});
 
 module.exports = restaurantSchema;

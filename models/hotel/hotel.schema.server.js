@@ -7,9 +7,9 @@ var hotelSchema = mongoose.Schema({
     },
     name: String,
     address: String,
-    phone: Number,
+    phone: String,
     customers: [String],
-    rate: Number
+    rate: String
 }, {collection: 'hotel'});
 
 module.exports = hotelSchema;
